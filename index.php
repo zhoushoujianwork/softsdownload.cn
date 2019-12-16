@@ -11,8 +11,7 @@ $soft_description = "免费的软件下载";
 $user_company_position = "总裁";
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
-$size = array("66.66" =>"66.66" , "139.324" => "139.324");
-?>
+$size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 ?>
 
 <!DOCTYPE html>
