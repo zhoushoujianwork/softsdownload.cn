@@ -12,6 +12,8 @@ $user_company_position = "总裁";
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
 $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
+$pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.svg' , 'Adobe_Pl.svg' ,  'ADOBE_PR.svg' ,  'Adobe_Ps.svg' ,  'Adobe.svg' ,  'office365.svg' ); 
+
 ?>
 
 <!DOCTYPE html>
@@ -400,6 +402,8 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 
 								// arrange the picture
 								$size_a = array_rand($size,1);
+								$random_keys =array_rand($pic,2);
+								$pic_a = $pic[$random_keys [1]];
 								$arrange_picture = "padding-bottom: ".$size_a."%";
 							?>
 			        			<figure>
@@ -409,7 +413,7 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
-												srcset="/img/soft_svg/Adobe_Ae.svg"
+												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
 											</a>
@@ -499,6 +503,8 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 
 								// arrange the picture
 								$size_a = array_rand($size,1);
+								$random_keys =array_rand($pic,2);
+								$pic_a = $pic[$random_keys [1]];
 								$arrange_picture = "padding-bottom: ".$size_a."%";
 							?>
 			        			<figure>
@@ -508,7 +514,7 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
-												srcset="/img/soft_svg/Adobe_Ae.svg"
+												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
 											</a>
@@ -598,6 +604,8 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 
 								// arrange the picture
 								$size_a = array_rand($size,1);
+								$random_keys =array_rand($pic,2);
+								$pic_a = $pic[$random_keys [1]];
 								$arrange_picture = "padding-bottom: ".$size_a."%";
 							?>
 			        			<figure>
@@ -607,7 +615,7 @@ $size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
-												srcset="/img/soft_svg/Adobe_Ae.svg"
+												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
 											</a>
