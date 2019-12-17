@@ -17,10 +17,18 @@ while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
 	$rows_a[] = $row;
 }
 // set the show number
-$a = array_chunk($rows_a,3,true);
+if (count($rows_a) % 3 == 0) {
+	$number_foreach = count($rows_a) / 3;
+}elseif (count($rows_a) < 3){
+	$number_foreach = 1;
+}else{
+	$number_foreach = count($rows_a) / 3 + 1;
+}
+$a = array_chunk($rows_a,$number_foreach,true);
+
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
-$size = array('139.324','66.66','139.324','66.66','139.324','66.66');
+$size = array('35','66.66','35','66.66','35','66.66');
 $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
 
 // noresult_buttom
@@ -162,7 +170,7 @@ if (count($rows_a) <> 0) {
 					      <svg class="DhJsa" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 					        <path d="M10.81 18.22l3.71 4.45L19.7 16l6.67 8.89H5.63zM29.33 28V4A1.32 1.32 0 0028 2.67H4A1.32 1.32 0 002.67 4v24A1.32 1.32 0 004 29.33h24A1.32 1.32 0 0029.33 28z"></path>
 					      </svg>
-					      <span class="_1WMnM xLon9">Softs</span>
+					      <span class="_1WMnM xLon9">Softs Result</span>
 					      <span class="x543r">&nbsp;
 					        <span class="_3ruL8"><?php echo count($rows_a) ?></span></span>
 					    </a>
@@ -347,7 +355,7 @@ if (count($rows_a) <> 0) {
 													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo number_format($row['amountofdownload']) ?></a>
+													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
@@ -363,7 +371,7 @@ if (count($rows_a) <> 0) {
 						<!-- 2 -->
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
-							$rows = $a[0];
+							$rows = $a[1];
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -485,7 +493,7 @@ if (count($rows_a) <> 0) {
 						<!-- 3 -->
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
-							$rows = $a[0];
+							$rows = $a[2];
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
