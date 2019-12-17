@@ -372,6 +372,7 @@ if (count($rows_a) <> 0) {
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
 							$rows = $a[1];
+							if ($rows <> "") {
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -488,12 +489,14 @@ if (count($rows_a) <> 0) {
 							</figure>
 							<?php 
 							}
+							}
 							 ?>
 						</div>
 						<!-- 3 -->
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
 							$rows = $a[2];
+							if ($rows <> "") {
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -609,6 +612,7 @@ if (count($rows_a) <> 0) {
 								</div>
 							</figure>
 							<?php 
+							}
 							}
 							 ?>
 						</div>
