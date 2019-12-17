@@ -1,18 +1,18 @@
 <?php 
 // echo phpinfo();
 include('php/mysql_connect.php');
-$sql_search = "SELECT d.*, u.* FROM userinfo u, download d WHERE u.username=d.uploader limit 0,8;";
+$sql_search = "SELECT d.*, u.* FROM userinfo u, download d WHERE u.username=d.uploader;";
 $mysqli_result = $db->query($sql_search);
-$rows = [];
+$rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
-	$rows[] =$row;
+	$rows_a[] = $row;
 }
-$soft_description = "免费的软件下载";
-$user_company_position = "总裁";
+// set the show number
+$a = array_chunk($rows_a,5);
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
-$size = array("66.66" =>"66.66" , "139.324" => "139.324", "33.33" =>"33.33");
-$pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.svg' , 'Adobe_Pl.svg' ,  'ADOBE_PR.svg' ,  'Adobe_Ps.svg' ,  'Adobe.svg' ,  'office365.svg' ); 
+$size = array('139.324','66.66','139.324','66.66','139.324','66.66');
+$pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
 
 ?>
 
@@ -37,7 +37,7 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 	          <span class="_2TTDP _22v5L xLon9">Softs for everyone</span></div>
 	      </a>
 	      <div class="_1g2pj _3PSbf">
-	        <form class="_2jvJJ mV0BM" data-test="nav-bar-search-form-form" action="/s">
+	        <form class="_2jvJJ mV0BM" data-test="nav-bar-search-form-form" action="/search">
 	          <button title="Search Softs" class="_2VoZY _3d86A" type="submit" data-test="nav-bar-search-form-button">
 	            <svg class="_2-tlh _1azRR _1mPD6" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 	              <path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path>
@@ -51,85 +51,21 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 	      </div>
 	    </div>
 	    <div class="_2j1Lb">
-	      <ul class="_250wZ _2Y-QM _1eXFm">
-	        <li class="_29OpZ xLon9">
-	          <a class="_3t5Ep _1CBrG" href="/collections">Collections</a></li>
-	        <li class="_29OpZ xLon9">
-	          <a class="_3t5Ep _1CBrG" href="/explore">Explore</a></li>
-	        <li class="bJOpW">
-	          <button class="_2gFPl" type="button">
-	            <svg class="_3DJPT" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-	              <path d="M7 15.5c0 1.9-1.6 3.5-3.5 3.5s-3.5-1.6-3.5-3.5 1.6-3.5 3.5-3.5 3.5 1.6 3.5 3.5zm21.5-3.5c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5zm-12.5 0c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5z"></path>
-	            </svg>
-	          </button>
-	          <div class="_282bs _15tg3 FvGw_">
-	            <div>
-	              <ul class="_2CnfM _2Y-QM _1eXFm">
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" data-type="PopoverLink" href="/about">About</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" data-type="PopoverLink" href="/wallpapers">Wallpapers</a></li>
-	                <li>
-	                  <a href="https://medium.com/unsplash?utm_source=unsplash&amp;utm_medium=referral" class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink">Blog</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink" href="/community">Community</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink" href="/history">History</a></li>
-	                <li>
-	                  <a href="https://madewith.unsplash.com/?utm_source=unsplash&amp;utm_medium=referral" class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" target="_blank" data-type="PopoverLink">Made with Unsplash</a></li>
-	                <li>
-	                  <a href="https://unsplash.com/developers" class="_1zOQ1 _27Bp2 _1CBrG _13hUA" data-type="PopoverLink">API/Developers</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink" href="/press">Press</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink" href="/hiring">Join the team</a></li>
-	                <li>
-	                  <a class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink" href="/license">License</a></li>
-	                <li>
-	                  <a href="https://help.unsplash.com/?utm_source=unsplash&amp;utm_medium=referral" class="_1zOQ1 _27Bp2 _1CBrG _13hUA" rel="nofollow" data-type="PopoverLink">Help</a></li>
-	                <div class="_20w1c">
-	                  <ul class="_1S8We _1P-r- _2Y-QM _1eXFm _2o76E">
-	                    <li>
-	                      <a title="Follow Unsplash on Twitter" target="_blank" rel="noopener noreferrer" href="https://twitter.com/unsplash?utm_source=unsplash&amp;utm_medium=referral" class="_1g92g rm98t">
-	                        <svg class="_2gauX _33ITs hIMT1 _33ITs" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-	                          <path d="M30 7.3c-1 .5-2.1.8-3.3.9 1.2-.7 2.1-1.8 2.5-3.2-1.1.7-2.3 1.1-3.6 1.4-1-1.1-2.5-1.8-4.2-1.8-3.2 0-5.7 2.6-5.7 5.7 0 .5.1.9.1 1.3-4.8-.2-9-2.5-11.8-6-.5.9-.8 1.9-.8 3 0 2 1 3.8 2.6 4.8-.9 0-1.8-.3-2.6-.7v.1c0 2.8 2 5.1 4.6 5.6-.5.1-1 .2-1.5.2-.4 0-.7 0-1.1-.1.7 2.3 2.9 3.9 5.4 4-2 1.5-4.4 2.5-7.1 2.5-.5 0-.9 0-1.4-.1 2.5 1.6 5.6 2.6 8.8 2.6 10.6 0 16.3-8.8 16.3-16.3v-.7c1.1-1 2-2 2.8-3.2z"></path>
-	                        </svg>
-	                        <span class="_3t-4N _2iX7Z">Unsplash Twitter</span></a>
-	                    </li>
-	                    <li>
-	                      <a title="Follow Unsplash on Facebook" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/pages/Unsplash/274126369394815?utm_source=unsplash&amp;utm_medium=referral" class="_1g92g rm98t">
-	                        <svg class="_2gauX _33ITs hIMT1 _33ITs" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-	                          <path d="M27.6 3h-23.2c-.8 0-1.4.6-1.4 1.4v23.1c0 .9.6 1.5 1.4 1.5h12.5v-10.1h-3.4v-3.9h3.4v-2.9c0-3.4 2.1-5.2 5-5.2 1.4 0 2.7.1 3 .2v3.5h-2.1c-1.6 0-1.9.8-1.9 1.9v2.5h3.9l-.5 3.9h-3.4v10.1h6.6c.8 0 1.4-.6 1.4-1.4v-23.2c.1-.8-.5-1.4-1.3-1.4z"></path>
-	                        </svg>
-	                        <span class="_3t-4N _2iX7Z">Unsplash Facebook</span></a>
-	                    </li>
-	                    <li>
-	                      <a title="Follow Unsplash on Instagram" target="_blank" rel="noopener noreferrer" href="https://instagram.com/unsplash?utm_source=unsplash&amp;utm_medium=referral" class="_1g92g rm98t">
-	                        <svg class="_2gauX _33ITs hIMT1 _33ITs" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-	                          <path d="M16 5.34c3.47 0 3.88 0 5.25.08a7.22 7.22 0 0 1 2.42.45 3.89 3.89 0 0 1 1.49 1 3.89 3.89 0 0 1 1 1.49 7.22 7.22 0 0 1 .45 2.42c.06 1.37.08 1.78.08 5.25s0 3.88-.08 5.25a7.22 7.22 0 0 1-.45 2.42 4.3 4.3 0 0 1-2.46 2.46 7.22 7.22 0 0 1-2.42.45c-1.37.06-1.78.08-5.25.08s-3.88 0-5.25-.08a7.22 7.22 0 0 1-2.42-.45 3.89 3.89 0 0 1-1.49-1 3.89 3.89 0 0 1-1-1.49 7.22 7.22 0 0 1-.45-2.42c-.06-1.37-.08-1.78-.08-5.25s0-3.88.08-5.25a7.22 7.22 0 0 1 .45-2.42 3.89 3.89 0 0 1 1-1.49 3.89 3.89 0 0 1 1.49-1 7.22 7.22 0 0 1 2.42-.45c1.37-.06 1.78-.08 5.25-.08m-.03-2.31c-3.53 0-4 0-5.36.08a9.57 9.57 0 0 0-3.16.6 6.66 6.66 0 0 0-3.8 3.8 9.57 9.57 0 0 0-.6 3.16c-.08 1.36-.08 1.83-.08 5.36s0 4 .08 5.36a9.57 9.57 0 0 0 .6 3.16 6.66 6.66 0 0 0 3.8 3.8 9.57 9.57 0 0 0 3.16.6c1.36.08 1.83.08 5.36.08s4 0 5.36-.08a9.57 9.57 0 0 0 3.16-.6 6.66 6.66 0 0 0 3.8-3.8 9.57 9.57 0 0 0 .6-3.16c.08-1.36.08-1.83.08-5.36s0-4-.08-5.36a9.57 9.57 0 0 0-.6-3.16 6.66 6.66 0 0 0-3.8-3.8 9.57 9.57 0 0 0-3.16-.6c-1.36-.08-1.83-.08-5.36-.08zm0 6.32a6.68 6.68 0 1 0 6.68 6.68 6.68 6.68 0 0 0-6.68-6.68zm0 11a4.33 4.33 0 1 1 4.33-4.32 4.33 4.33 0 0 1-4.33 4.33zm6.94-12.82a1.56 1.56 0 1 0 1.56 1.56 1.56 1.56 0 0 0-1.56-1.56z"></path>
-	                        </svg>
-	                        <span class="_3t-4N _2iX7Z">Unsplash Instagram</span></a>
-	                    </li>
-	                    <li>
-	                      <a title="Follow Unsplash on Medium" target="_blank" rel="noopener noreferrer" href="https://medium.com/unsplash?utm_source=unsplash&amp;utm_medium=referral" class="_1g92g rm98t">
-	                        <svg class="_2gauX _33ITs hIMT1 _33ITs" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-	                          <path d="M3 3v26h26v-26zm21.6 6.16l-1.39 1.34a.42.42 0 0 0-.16.39v9.82a.42.42 0 0 0 .16.39l1.36 1.34v.29h-6.85v-.29l1.41-1.37c.14-.14.14-.18.14-.39v-7.94l-3.93 10h-.53l-4.56-10v6.68a.89.89 0 0 0 .25.76l1.84 2.23v.29h-5.21v-.29l1.87-2.23a.89.89 0 0 0 .23-.76v-7.72a.67.67 0 0 0-.23-.58l-1.63-2v-.25h5.07l3.91 8.58 3.44-8.58h4.81z"></path>
-	                        </svg>
-	                        <span class="_3t-4N _2iX7Z">Unsplash Medium</span></a>
-	                    </li>
-	                  </ul>
-	                </div>
-	              </ul>
-	            </div>
-	          </div>
-	        </li>
-	      </ul>
-	    </div>
+			<ul class="_250wZ _2Y-QM _1eXFm">
+				<li class="_29OpZ xLon9">
+				  <a class="_3t5Ep _1CBrG" href="/collections">馆藏</a></li>
+				<li class="_29OpZ xLon9">
+				  <a class="_3t5Ep _1CBrG" href="/collections">关于</a></li>
+				<li class="_29OpZ xLon9">
+				  <a class="_3t5Ep _1CBrG" href="/collections">免责声明</a></li>
+				<li class="_29OpZ xLon9">
+				  <a class="_3t5Ep _1CBrG" href="/collections">更新日志</a></li>
+			</ul>
+        </div>
 	    <div class="aApNa">
 	      <div>
 	        <div class="_1S7B0 _1XDQr">
-	          <button type="button" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo NDx0k _2Xklx">Submit
-	            <span class="_3LZjN">a soft</span></button>
+	          <button type="button" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo NDx0k _2Xklx">上传<span class="_3LZjN">软件</span></button>
 	        </div>
 	        <div class="QoLMB">
 	          <a href="/login" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx">Login</a>
@@ -188,7 +124,7 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 	      <ul class="_2d0kJ _2Y-QM _1eXFm">
 	        <li class="_1hkdt">
 	          <a aria-current="page" class="qvEaq _1CBrG EfqHf" href="/">
-	            <span class="_1WMnM xLon9">Editorial</span></a>
+	            <span class="_1WMnM xLon9">热门分类</span></a>
 	        </li>
 	      </ul>
 	    </div>
@@ -199,67 +135,15 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 	          <ul class="_2d0kJ _2Y-QM _1eXFm _2Vs_B">
 	            <li class="_1hkdt">
 	              <a class="qvEaq _1CBrG" href="/t/wallpapers">
-	                <span class="_1WMnM xLon9">Wallpapers</span></a>
+	                <span class="_1WMnM xLon9">办公软件</span></a>
 	            </li>
 	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/textures-patterns">
-	                <span class="_1WMnM xLon9">Textures &amp; Patterns</span></a>
+	              <a class="qvEaq _1CBrG" href="/t/wallpapers">
+	                <span class="_1WMnM xLon9">IT软件</span></a>
 	            </li>
 	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/nature">
-	                <span class="_1WMnM xLon9">Nature</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/current-events">
-	                <span class="_1WMnM xLon9">Current Events</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/architecture">
-	                <span class="_1WMnM xLon9">Architecture</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/business-work">
-	                <span class="_1WMnM xLon9">Business &amp; Work</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/film">
-	                <span class="_1WMnM xLon9">Film</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/animals">
-	                <span class="_1WMnM xLon9">Animals</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/travel">
-	                <span class="_1WMnM xLon9">Travel</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/fashion">
-	                <span class="_1WMnM xLon9">Fashion</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/food-drink">
-	                <span class="_1WMnM xLon9">Food &amp; Drink</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/spirituality">
-	                <span class="_1WMnM xLon9">Spirituality</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/experimental">
-	                <span class="_1WMnM xLon9">Experimental</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/people">
-	                <span class="_1WMnM xLon9">People</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/health">
-	                <span class="_1WMnM xLon9">Health</span></a>
-	            </li>
-	            <li class="_1hkdt">
-	              <a class="qvEaq _1CBrG" href="/t/arts-culture">
-	                <span class="_1WMnM xLon9">Arts &amp; Culture</span></a>
+	              <a class="qvEaq _1CBrG" href="/t/wallpapers">
+	                <span class="_1WMnM xLon9">修图视频编辑</span></a>
 	            </li>
 	          </ul>
 	        </div>
@@ -288,7 +172,7 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 				        <div class="wqRmt">
 				          <div class="_3k9pE">
 				            <div class="_1w02r">
-				              <form class="_2FayZ mV0BM" data-test="homepage-search-form-form" action="/s">
+				              <form class="_2FayZ mV0BM" data-test="homepage-search-form-form" action="/search">
 				                <button title="Search Softs" class="_2VoZY _3d86A" type="submit" data-test="homepage-header-search-form-button">
 				                  <svg class="_2-tlh _1azRR _18QGm" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 				                    <path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path>
@@ -301,7 +185,7 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 				              </form>
 				            </div>
 				            <div class="_3PSbf">
-				              <form class="_2FayZ mV0BM" data-test="homepage-search-form-form" action="/s">
+				              <form class="_2FayZ mV0BM" data-test="homepage-search-form-form" action="/search">
 				                <button title="Search Softs" class="_2VoZY _3d86A" type="submit" data-test="homepage-header-search-form-button">
 				                  <svg class="_2-tlh _1azRR _18QGm" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 				                    <path d="M31 28.64l-7.57-7.57a12.53 12.53 0 1 0-2.36 2.36l7.57 7.57zm-17.5-6a9.17 9.17 0 1 1 6.5-2.64 9.11 9.11 0 0 1-6.5 2.67z"></path>
@@ -380,39 +264,42 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 			      		<!-- 第一栏 -->
 				        <div class="_1ZjfQ _2T3hc LURmp">
 			        		<!-- 横图 -->
-			        		<?php
-							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
-									$user_name = "未知用户";
-								}else{
-									$user_name = "{$row['username']}";
-								}
+				        		<?php
+				        		$rows = $a[0];
+								foreach ($rows as $row) {
+									if ($row['uploader'] == "") {
+										$user_name = "未知用户";
+									}else{
+										$user_name = "{$row['username']}";
+									}
 
-								if ($row['user_company_position'] == "") {
-									$user_company_position = "未设置职位信息";
-								}else{
-									$user_company_position = "{$row['user_company_position']}";
-								}
+									if ($row['user_company_position'] == "") {
+										$user_company_position = "未设置职位信息";
+									}else{
+										$user_company_position = "{$row['user_company_position']}";
+									}
 
-								if ($row['company'] == "") {
-									$user_company = "未设置公司";
-								}else{
-									$user_company = "{$row['company']}";
-								}
+									if ($row['company'] == "") {
+										$user_company = "未设置公司";
+									}else{
+										$user_company = "{$row['company']}";
+									}
 
-								// arrange the picture
-								$size_a = array_rand($size,1);
-								$random_keys =array_rand($pic,2);
-								$pic_a = $pic[$random_keys [1]];
-								$arrange_picture = "padding-bottom: ".$size_a."%";
-							?>
+									// arrange the picture
+									$random_keys_size = array_rand($size,2);
+									// var_dump($random_keys_size[1]);
+									$random_keys = array_rand($pic,2);
+									$pic_a = $pic[$random_keys [1]];
+									$size_a = $size[$random_keys_size[1]];
+									$arrange_picture = "padding-bottom: ".$size_a."%";
+								?>
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $soft_description ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
-												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
+												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
 												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
@@ -474,46 +361,49 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 										</div>
 									</div>
 								</figure>
-							<?php 
-							}
-							 ?>
-				        </div>
+								<?php 
+								}
+								 ?>
+				        	</div>
 				        <!-- 第二栏 -->
 				        <div class="_1ZjfQ _2T3hc LURmp">
 			        		<!-- 横图 -->
-			        		<?php
-							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
-									$user_name = "未知用户";
-								}else{
-									$user_name = "{$row['username']}";
-								}
+				        		<?php
+				        		$rows = $a[1];
+								foreach ($rows as $row) {
+									if ($row['uploader'] == "") {
+										$user_name = "未知用户";
+									}else{
+										$user_name = "{$row['username']}";
+									}
 
-								if ($row['user_company_position'] == "") {
-									$user_company_position = "未设置职位信息";
-								}else{
-									$user_company_position = "{$row['user_company_position']}";
-								}
+									if ($row['user_company_position'] == "") {
+										$user_company_position = "未设置职位信息";
+									}else{
+										$user_company_position = "{$row['user_company_position']}";
+									}
 
-								if ($row['company'] == "") {
-									$user_company = "未设置公司";
-								}else{
-									$user_company = "{$row['company']}";
-								}
+									if ($row['company'] == "") {
+										$user_company = "未设置公司";
+									}else{
+										$user_company = "{$row['company']}";
+									}
 
-								// arrange the picture
-								$size_a = array_rand($size,1);
-								$random_keys =array_rand($pic,2);
-								$pic_a = $pic[$random_keys [1]];
-								$arrange_picture = "padding-bottom: ".$size_a."%";
-							?>
+									// arrange the picture
+									$random_keys_size = array_rand($size,2);
+									// var_dump($random_keys_size[1]);
+									$random_keys = array_rand($pic,2);
+									$pic_a = $pic[$random_keys [1]];
+									$size_a = $size[$random_keys_size[1]];
+									$arrange_picture = "padding-bottom: ".$size_a."%";
+								?>
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $soft_description ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
-												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
+												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
 												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
@@ -575,46 +465,49 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 										</div>
 									</div>
 								</figure>
-							<?php 
-							}
-							 ?>
-				        </div>
+								<?php 
+								}
+								 ?>
+				        	</div>
 				        <!-- 第三栏 -->
-				        <div class="_1ZjfQ _2T3hc LURmp">
+						<div class="_1ZjfQ _2T3hc LURmp">
 			        		<!-- 横图 -->
-			        		<?php
-							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
-									$user_name = "未知用户";
-								}else{
-									$user_name = "{$row['username']}";
-								}
+				        		<?php
+				        		$rows = $a[2];
+								foreach ($rows as $row) {
+									if ($row['uploader'] == "") {
+										$user_name = "未知用户";
+									}else{
+										$user_name = "{$row['username']}";
+									}
 
-								if ($row['user_company_position'] == "") {
-									$user_company_position = "未设置职位信息";
-								}else{
-									$user_company_position = "{$row['user_company_position']}";
-								}
+									if ($row['user_company_position'] == "") {
+										$user_company_position = "未设置职位信息";
+									}else{
+										$user_company_position = "{$row['user_company_position']}";
+									}
 
-								if ($row['company'] == "") {
-									$user_company = "未设置公司";
-								}else{
-									$user_company = "{$row['company']}";
-								}
+									if ($row['company'] == "") {
+										$user_company = "未设置公司";
+									}else{
+										$user_company = "{$row['company']}";
+									}
 
-								// arrange the picture
-								$size_a = array_rand($size,1);
-								$random_keys =array_rand($pic,2);
-								$pic_a = $pic[$random_keys [1]];
-								$arrange_picture = "padding-bottom: ".$size_a."%";
-							?>
+									// arrange the picture
+									$random_keys_size = array_rand($size,2);
+									// var_dump($random_keys_size[1]);
+									$random_keys = array_rand($pic,2);
+									$pic_a = $pic[$random_keys [1]];
+									$size_a = $size[$random_keys_size[1]];
+									$arrange_picture = "padding-bottom: ".$size_a."%";
+								?>
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $soft_description ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
-												<img alt="<?php echo $soft_description ?>" style="background-color:#fff;"
+												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
 												srcset="/img/soft_svg/<?php echo $pic_a ?>"
 												itemprop="thumbnailUrl" class="_2zEKz">
 											</div>
@@ -676,10 +569,10 @@ $pic = array( 'Adobe_Ae.svg' ,  'ADOBE_CH.svg',   'ADOBE_CO.svg' ,  'Adobe_Dw.sv
 										</div>
 									</div>
 								</figure>
-							<?php 
-							}
-							 ?>
-				        </div>
+								<?php 
+								}
+								 ?>
+				        	</div>				        
 			      	</div>
 			    </div>
 			</div>
