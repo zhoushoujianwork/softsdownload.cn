@@ -28,8 +28,8 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	  <nav class="_1M8LQ _2xMJp">
 	    <div class="_2jZzC">
 	      <a class="_2-Pvv _1CBrG" title="Home — Unsplash" href="/">
-	        <svg class="_2m4hn" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-labelledby="unsplash-home" aria-hidden="false">
-	          <title id="unsplash-home">Unsplash Home</title>
+	        <svg class="_2m4hn" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-labelledby="Softsdownload-home" aria-hidden="false">
+	          <title id="unsplash-home">Softsdownload Home</title>
 	          <path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path>
 	        </svg>
 	        <div class="_3nvuJ">
@@ -57,7 +57,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 				<li class="_29OpZ xLon9">
 				  <a class="_3t5Ep _1CBrG" href="/collections">关于</a></li>
 				<li class="_29OpZ xLon9">
-				  <a class="_3t5Ep _1CBrG" href="/collections">免责声明</a></li>
+				  <a class="_3t5Ep _1CBrG" href="/license">免责声明</a></li>
 				<li class="_29OpZ xLon9">
 				  <a class="_3t5Ep _1CBrG" href="/collections">更新日志</a></li>
 			</ul>
