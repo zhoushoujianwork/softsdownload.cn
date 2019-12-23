@@ -1,5 +1,11 @@
 <?php 
 // echo phpinfo();
+session_start();
+if (isset($_SESSION['username'])) {
+	$join_status = "display:none";
+} else {
+	$join_status = "";
+}
 include('php/mysql_connect.php');
 $sql_search = "SELECT d.*, u.* FROM userinfo u, download d WHERE u.username=d.uploader;";
 $mysqli_result = $db->query($sql_search);
@@ -13,6 +19,7 @@ $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
 $size = array('139.324','66.66','139.324','66.66','139.324','66.66');
 $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
+
 
 ?>
 
@@ -69,7 +76,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	        </div>
 	        <div class="QoLMB">
 	          <a href="/login" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx">Login</a>
-	          <a href="https://unsplash.com/join" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">Join free</a></div>
+	          <a href="/join" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">Join free</a></div>
 	      </div>
 	    </div>
 	  </nav>
@@ -113,9 +120,10 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	    </ul>
 	  </nav>
 	  <div class="_15dRI"></div>
-	  <div class="MKbw9">
-	    <a href="/login" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _3d75X PRES1 NDx0k _2Xklx">Login</a>
-	    <a href="https://unsplash.com/join" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _3d75X TPbmh _2Xklx">Join free</a></div>
+		<div class="MKbw9" style="display: none">
+			<a style="display: none" href="/login" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _3d75X PRES1 NDx0k _2Xklx">Login</a>
+			<a style="display: none" href="https://unsplash.com/join" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _3d75X TPbmh _2Xklx">Join free</a>
+		</div>
 	</div>
 	<!-- 分类标签 -->
 	<div class="_3VG_J">

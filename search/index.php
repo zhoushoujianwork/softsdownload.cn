@@ -24,6 +24,9 @@ if (count($rows_a) % 3 == 0) {
 }else{
 	$number_foreach = count($rows_a) / 3 + 1;
 }
+if ($number_foreach == 0) {
+	$number_foreach = 1;
+}
 $a = array_chunk($rows_a,$number_foreach,true);
 
 $soft_url = "https://www.baidu.com";
