@@ -189,6 +189,7 @@ if (count($rows_a) <> 0) {
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
 							$rows = $a[0];
+							if(is_array($rows)) {
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -305,13 +306,14 @@ if (count($rows_a) <> 0) {
 							</figure>
 							<?php 
 							}
+						}
 							 ?>
 						</div>
 						<!-- 2 -->
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
 							$rows = $a[1];
-							if ($rows <> "") {
+							if(is_array($rows)) {
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -417,7 +419,7 @@ if (count($rows_a) <> 0) {
 													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo number_format($row['amountofdownload']) ?></a>
+													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
@@ -428,14 +430,14 @@ if (count($rows_a) <> 0) {
 							</figure>
 							<?php 
 							}
-							}
+						}
 							 ?>
 						</div>
 						<!-- 3 -->
 						<div class="_1ZjfQ _2T3hc Xl8Lr">
 							<?php
 							$rows = $a[2];
-							if ($rows <> "") {
+							if(is_array($rows)) {
 							foreach ($rows as $row) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
@@ -541,7 +543,7 @@ if (count($rows_a) <> 0) {
 													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo number_format($row['amountofdownload']) ?></a>
+													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
@@ -552,7 +554,7 @@ if (count($rows_a) <> 0) {
 							</figure>
 							<?php 
 							}
-							}
+						}
 							 ?>
 						</div>
 					</div>
