@@ -1,11 +1,7 @@
 <?php 
 // echo phpinfo();
 session_start();
-if (isset($_SESSION['username'])) {
-	$join_status = "display:none";
-} else {
-	$join_status = "";
-}
+
 include('php/mysql_connect.php');
 $sql_search = "SELECT d.*, u.* FROM userinfo u, download d WHERE u.username=d.uploader;";
 $mysqli_result = $db->query($sql_search);
@@ -20,7 +16,6 @@ $soft_url = "https://www.baidu.com";
 $size = array('139.324','66.66','139.324','66.66','139.324','66.66');
 $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +24,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="web.css" media="screen">
+	<script type="text/javascript" src="/page.js"></script>
 </head>
 <body>
 	<header class="niA6p _3PSbf">
@@ -66,7 +62,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 				<li class="_29OpZ xLon9">
 				  <a class="_3t5Ep _1CBrG" href="/license">免责声明</a></li>
 				<li class="_29OpZ xLon9">
-				  <a class="_3t5Ep _1CBrG" href="/collections">更新日志</a></li>
+				  <a class="_3t5Ep _1CBrG" href="https://github.com/zhoushoujianwork/softsdownload.cn">更新日志</a></li>
 			</ul>
         </div>
 	    <div class="aApNa">
@@ -75,8 +71,20 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	          <button type="button" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo NDx0k _2Xklx">上传<span class="_3LZjN">软件</span></button>
 	        </div>
 	        <div class="QoLMB">
-	          <a href="/login" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx">Login</a>
-	          <a href="/join" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">Join free</a></div>
+				<?php
+				if (isset($_SESSION['username'])) {
+				?>
+				<a href="" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx"><?php echo $_SESSION['username'] ?></a>
+				<a href="/login" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">注销</a></div>
+				<?php
+				} else {
+
+				?>
+				<a href="/login" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx">Login</a>
+				<a href="/join" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">Join free</a>
+				<?php
+				}
+				?>
 	      </div>
 	    </div>
 	  </nav>
@@ -120,9 +128,21 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	    </ul>
 	  </nav>
 	  <div class="_15dRI"></div>
-		<div class="MKbw9" style="display: none">
-			<a style="display: none" href="/login" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _3d75X PRES1 NDx0k _2Xklx">Login</a>
-			<a style="display: none" href="https://unsplash.com/join" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _3d75X TPbmh _2Xklx">Join free</a>
+		<div class="MKbw9">
+			<?php
+				if (isset($_SESSION['username'])) {
+				?>
+				<a href="" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx"><?php echo $_SESSION['username'] ?></a>
+				<a href="/login" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">注销</a></div>
+				<?php
+				} else {
+
+				?>
+				<a href="/login" rel="nofollow" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo _2YZnO NDx0k _2Xklx">Login</a>
+				<a href="/join" rel="nofollow" class="_1yvXd _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo TPbmh _2Xklx">Join free</a>
+				<?php
+				}
+				?>
 		</div>
 	</div>
 	<!-- 分类标签 -->
@@ -513,6 +533,9 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
 											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+												<form action="/introduce" method="get" style="display: none;">
+													<input type="text" name="soft_introdyce" volue="<?php echo $row['softname'] ?>">
+												</form>
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
