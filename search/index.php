@@ -3,14 +3,14 @@
 $searchKeyword = $_GET["searchKeyword"];
 // echo $searchKeyword;
 include('../php/mysql_connect.php');
-$sql_search = "select d.*, u.*
-					from (select *
-							from download 
-							where softname like '%$searchKeyword%'
-							) d, userinfo u 
-					where
-					u.username=d.uploader
-					order by amountofdownload desc";
+$sql_search = "select d.*, u.username,u.user_company_position,u.company
+from (select *
+from download 
+where softname like '%$searchKeyword%'
+) d, userinfo u 
+where
+u.username=d.uploader
+order by amountofdownload desc;";
 $mysqli_result = $db->query($sql_search);
 $rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
@@ -31,7 +31,7 @@ $a = array_chunk($rows_a,$number_foreach,true);
 
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
-$size = array('35','66.66','35','66.66','35','66.66');
+$size = array('66','66');
 $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
 
 // noresult_buttom
@@ -114,26 +114,6 @@ if (count($rows_a) <> 0) {
 					        <span class="_3ruL8"><?php echo count($rows_a) ?></span></span>
 					    </a>
 					  </li>
-					  <li class="_1hkdt">
-					    <a class="qvEaq _1CBrG" data-test="search-nav-link-collections" href="/s/collections/dog">
-					      <svg class="DhJsa" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-					        <path d="M.57 9.42c4.76 2.22 9.54 4.46 14.32 6.66a2.28 2.28 0 0 0 2.21 0c4.76-2.18 9.56-4.44 14.28-6.64.27-.13.61-.2.61-.55s-.34-.45-.61-.57c-4.72-2.21-9.58-4.5-14.32-6.7a3.16 3.16 0 0 0-2.06-.02c-4.8 2.22-9.67 4.51-14.45 6.75-.23.11-.55.2-.55.52s.32.44.57.55zm19 .72v-4.14l8.09 2.3-11.66 5.43v-4.73zM31.83 22.71a1.31 1.31 0 0 0-.36-.21c-.83-.39-1.67-.8-2.52-1.18a2.63 2.63 0 0 0-2.29 0l-9.48 4.44a2.61 2.61 0 0 1-2.34 0l-9.51-4.4a2.71 2.71 0 0 0-2.36 0c-.78.38-1.58.75-2.37 1.12-.26.13-.6.2-.6.55s.34.45.59.57c4.74 2.22 9.52 4.46 14.3 6.67a3.57 3.57 0 0 0 1.1.32 3.08 3.08 0 0 0 1.18-.36c4.74-2.19 9.49-4.35 14.19-6.61a2.48 2.48 0 0 0 .47-.27.36.36 0 0 0 0-.64zM.6 16.51c4.73 2.24 9.49 4.44 14.26 6.68a6 6 0 0 0 1.13.3 4 4 0 0 0 1.09-.3c4.8-2.22 9.58-4.44 14.39-6.72a1.62 1.62 0 0 0 .32-.17.39.39 0 0 0 0-.68 2 2 0 0 0-.34-.2l-2.45-1.17a2.54 2.54 0 0 0-2.22 0q-4.83 2.23-9.62 4.5a2.54 2.54 0 0 1-2.22 0c-3.2-1.49-6.4-3-9.56-4.44a2.55 2.55 0 0 0-2.38-.06l-2.38 1.14c-.26.12-.62.19-.62.57s.36.44.6.55z"></path>
-					      </svg>
-					      <span class="_1WMnM xLon9">Collections</span>
-					      <span class="x543r">&nbsp;
-					        <span class="_3ruL8">16.6k</span></span>
-					    </a>
-					  </li>
-					  <li class="_1hkdt">
-					    <a class="qvEaq _1CBrG" data-test="search-nav-link-users" href="/s/users/dog">
-					      <svg class="DhJsa" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
-					        <path d="M30.67 22.67v4h-5.34v-4a6.21 6.21 0 00-3.1-5.16c3.68.49 8.44 2.25 8.44 5.16zM12 16a5.34 5.34 0 10-5.33-5.33A5.33 5.33 0 0012 16zm8 0a5.34 5.34 0 000-10.67 5.72 5.72 0 00-1.77.32 8 8 0 010 10A5.44 5.44 0 0020 16zm-8 1.33c-3.56 0-10.67 1.79-10.67 5.34v4h21.34v-4c0-3.55-7.11-5.34-10.67-5.34z"></path>
-					      </svg>
-					      <span class="_1WMnM xLon9">Users</span>
-					      <span class="x543r">&nbsp;
-					        <span class="_3ruL8">115</span></span>
-					    </a>
-					  </li>
 					</ul>
 				</div>
 			</div>
@@ -143,36 +123,6 @@ if (count($rows_a) <> 0) {
 			<h1 class="_1GUcz _2RmO0 _3zWw2 _2Mu9I" data-test="page-header-title"><?php echo $searchKeyword ?></h1>
 			<div class="_3NchO _1iWCF _1pgnK _5KnKv"></div>
 			<div class="_2xMqe _3hIYZ _3PSbf">
-			<div class="_1fgQj">
-			  <div class="_2Ru_P" style="height: 42px;">
-			  	<!-- recommendations -->
-			    <div class="_3b4NQ">
-					<div class="R6-Wf">
-						<div class="_3sVnM _3TUA0">
-						  <div class="x1MBX _1Ta1W _1KGak">
-						    <a class="_2634o _1CBrG _1ByhS _2bG1V xLon9" title="More puppy images" href="/s/photos/puppy">puppy</a></div>
-						</div>
-					</div>
-					<div class="R6-Wf">
-						<div class="_3sVnM _3TUA0">
-						  <div class="x1MBX _1Ta1W _1KGak">
-						    <a class="_2634o _1CBrG _1ByhS _2bG1V xLon9" title="More puppy images" href="/s/photos/puppy">puppy</a></div>
-						</div>
-					</div>
-					<div class="R6-Wf">
-						<div class="_3sVnM _3TUA0">
-						  <div class="x1MBX _1Ta1W _1KGak">
-						    <a class="_2634o _1CBrG _1ByhS _2bG1V xLon9" title="More puppy images" href="/s/photos/puppy">puppy</a></div>
-						</div>
-					</div>
-					<div class="R6-Wf">
-						<div class="_3sVnM _3TUA0">
-						  <div class="x1MBX _1Ta1W _1KGak">
-						    <a class="_2634o _1CBrG _1ByhS _2bG1V xLon9" title="More puppy images" href="/s/photos/puppy">puppy</a></div>
-						</div>
-					</div>
-			    </div>
-			  </div>
 			</div>
 			</div>
 			</div>
@@ -194,7 +144,7 @@ if (count($rows_a) <> 0) {
 								if ($row['uploader'] == "") {
 									$user_name = "未知用户";
 								}else{
-									$user_name = "{$row['username']}";
+									$user_name = "{$row['uploader']}";
 								}
 
 								if ($row['user_company_position'] == "") {
@@ -220,7 +170,7 @@ if (count($rows_a) <> 0) {
 							<figure>
 								<div style="padding-bottom: 24px;">
 									<div class="_1Nk0C">
-										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"
@@ -344,7 +294,7 @@ if (count($rows_a) <> 0) {
 							<figure>
 								<div style="padding-bottom: 24px;">
 									<div class="_1Nk0C">
-										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"
@@ -468,7 +418,7 @@ if (count($rows_a) <> 0) {
 							<figure>
 								<div style="padding-bottom: 24px;">
 									<div class="_1Nk0C">
-										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+										<a itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"

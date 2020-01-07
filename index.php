@@ -3,7 +3,7 @@
 session_start();
 
 include('php/mysql_connect.php');
-$sql_search = "SELECT d.*, u.* FROM userinfo u, download d WHERE u.username=d.uploader;";
+$sql_search = "SELECT d.*, u.username, u.user_company_position, u.company FROM userinfo u, download d WHERE u.username=d.uploader;";
 $mysqli_result = $db->query($sql_search);
 $rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
@@ -71,6 +71,9 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 	          <button type="button" class="_37zTg _1l4Hh _1CBrG _1zIyn xLon9 _2PJgo NDx0k _2Xklx">上传<span class="_3LZjN">软件</span></button>
 	        </div>
 	        <div class="QoLMB">
+	        <!-- 	<button id="div1" onclick="SetStyle('display','none','div1');">点我</button>
+	        </div> -->
+
 				<?php
 				if (isset($_SESSION['username'])) {
 				?>
@@ -324,7 +327,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
@@ -428,7 +431,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 											<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 												<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 												<img alt="<?php echo $row['description'] ?>" style="background-color:#fff;"
@@ -532,7 +535,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 			        			<figure>
 									<div style="padding-bottom: 24px;">
 										<div class="_1Nk0C">
-											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce">
+											<a title="<?php echo $row['description'] ?>" itemprop="contentUrl" class="_2Mc8_" href="/introduce/?id=<?php echo $row['id'] ?>">
 												<form action="/introduce" method="get" style="display: none;">
 													<input type="text" name="soft_introdyce" volue="<?php echo $row['softname'] ?>">
 												</form>

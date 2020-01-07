@@ -1,9 +1,31 @@
+<?php 
+$id=$_GET['id'];
+include('../php/mysql_connect.php');
+$sql_search = "SELECT * FROM softsdown.download where id=$id;";
+$mysqli_result = $db->query($sql_search);
+$rows_a = [];
+while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
+	$rows_a[] = $row;
+}
+$rows=$rows_a['0'];
+// var_dump($rows);
+// die();
+
+
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link rel="stylesheet" type="text/css" href="../web.css" media="screen">
+	<style type="text/css">
+		#message { width: 100%;height: 100%; }
+		#message span { width: 100%;height: 100%;color: black;}
+		#message .discuss { border: 0px black dashed;background-color: #ccc; margin-top: 5px;border-radius:10px;padding: 5px;}
+		#message .discuss span { width: 100%;height: 100%;color: white; }
+		.box { display: inline-block;width: 20%;text-align: center;background-color: #ccc;border-radius:10px;border: 1px white solid;}
+	</style>
 </head>
 <body>
 	<header class="niA6p _3PSbf">
@@ -70,12 +92,28 @@
 		<!-- theme contax  -->
 		<div class="_14IbC _2sCnE PrOBO _1CR66">
 			<div class="_2WEjr _1iWCF _1pgnK _5KnKv">
-			  <h1 class="gype5 _1iWCF _27Bp2">软件名称：</h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件适用平台：</h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件上传日期：</h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件下载次数：</h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件失效投票数：</h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件名称：<?php echo $rows['softname'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件适用平台：<?php echo $rows['system'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件上传日期：<?php echo date("Y-m-d h:i:sa",$rows['intime']) ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件下载次数：<?php echo number_format($rows['amountofdownload']) ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件失效投票数：<?php echo $rows['lose'] ?></h1>
 			  <h1 class="gype5 _1iWCF _27Bp2">软件描述：</h1>
+			  <div style="border:0px black dashed;width: 100%;background-color: #ccc">
+			  	 <span style="color: #aaa;font-size: 15px;"><?php echo $rows['description'] ?></span>
+			  </div>
+				<div id="message">
+					<h1 class="gype5 _1iWCF _27Bp2">评论区</h1>
+					<div>
+						<input style="width: 100%;" type="text" name="">
+						<button style="width: 120px;height: 40px;margin: 0px auto;">提交</button>
+					</div>
+					<div class="discuss">
+						<span>我是评论我是评论我是评论我是评论我是评论我是评论我是评论我是评论我是评论我是评论我是评论</span>
+					</div>
+					<div style="width: 100%;">
+						<div class="box">2019-12-31</div><div class="box">奥利给</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

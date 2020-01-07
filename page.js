@@ -14,7 +14,7 @@ function checkUserid(){
 function trim(s){
    return s.replace(/^\s+|\s+$/g,"");
 }
-function HiddenDiv() {
-	var oDiv=document.getElementById('div1');
-	oDiv.style.display="none"
+function SetStyle(name,volue,id) {
+	var oDiv=document.getElementById(id);
+	oDiv.style[name]=volue
 }
