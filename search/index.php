@@ -5,12 +5,12 @@ $searchKeyword = $_GET["searchKeyword"];
 include('../php/mysql_connect.php');
 $sql_search = "select d.*, u.username,u.user_company_position,u.company
 from (select *
-from download 
-where softname like '%$searchKeyword%'
+from soft_info 
+where soft_name like '%$searchKeyword%'
 ) d, userinfo u 
 where
-u.username=d.uploader
-order by amountofdownload desc;";
+u.username=d.soft_uploader
+order by id limit 0,50;";
 $mysqli_result = $db->query($sql_search);
 $rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
@@ -31,7 +31,7 @@ $a = array_chunk($rows_a,$number_foreach,true);
 
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
-$size = array('66','66');
+$size = array('30','30');
 $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_Pl.svg','ADOBE_PR.svg','Adobe_Ps.svg','Adobe.svg','office365.svg','Adobe_Flash_Player.svg'); 
 
 // noresult_buttom
@@ -141,10 +141,10 @@ if (count($rows_a) <> 0) {
 							$rows = $a[0];
 							if(is_array($rows)) {
 							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
+								if ($row['soft_uploader'] == "") {
 									$user_name = "未知用户";
 								}else{
-									$user_name = "{$row['uploader']}";
+									$user_name = "{$row['soft_uploader']}";
 								}
 
 								if ($row['user_company_position'] == "") {
@@ -174,7 +174,7 @@ if (count($rows_a) <> 0) {
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"
-											srcset="/img/soft_svg/<?php echo $pic_a ?>"
+											srcset="<?php echo $row['soft_icon_url'] ?>"
 											itemprop="thumbnailUrl" class="_2zEKz">
 										</div>
 										</a>
@@ -237,18 +237,18 @@ if (count($rows_a) <> 0) {
 									<!-- search result tips -->
 										<div class="_3A74U">
 											<figcaption itemprop="caption">
-											<p class="_3IsQW _27Bp2"><?php echo $row['description'] ?></p></figcaption>
+											<p class="_3IsQW _27Bp2"><?php echo $row['soft_desc'] ?></p></figcaption>
 										</div>
 										<div class="_3A74U">
 											<div class="_2_OE1">
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件版本"><?php echo $row['soft_version'] ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件大小"><?php echo $row['soft_size'] ?></a>
 												</div>
 											</div>
 										</div>
@@ -265,7 +265,7 @@ if (count($rows_a) <> 0) {
 							$rows = $a[1];
 							if(is_array($rows)) {
 							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
+								if ($row['soft_uploader'] == "") {
 									$user_name = "未知用户";
 								}else{
 									$user_name = "{$row['username']}";
@@ -298,7 +298,7 @@ if (count($rows_a) <> 0) {
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"
-											srcset="/img/soft_svg/<?php echo $pic_a ?>"
+											srcset="<?php echo $row['soft_icon_url'] ?>"
 											itemprop="thumbnailUrl" class="_2zEKz">
 										</div>
 										</a>
@@ -361,18 +361,18 @@ if (count($rows_a) <> 0) {
 									<!-- search result tips -->
 										<div class="_3A74U">
 											<figcaption itemprop="caption">
-											<p class="_3IsQW _27Bp2"><?php echo $row['description'] ?></p></figcaption>
+											<p class="_3IsQW _27Bp2"><?php echo $row['soft_desc'] ?></p></figcaption>
 										</div>
 										<div class="_3A74U">
 											<div class="_2_OE1">
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件版本"><?php echo $row['soft_version'] ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件大小"><?php echo $row['soft_size'] ?></a>
 												</div>
 											</div>
 										</div>
@@ -389,7 +389,7 @@ if (count($rows_a) <> 0) {
 							$rows = $a[2];
 							if(is_array($rows)) {
 							foreach ($rows as $row) {
-								if ($row['uploader'] == "") {
+								if ($row['soft_uploader'] == "") {
 									$user_name = "未知用户";
 								}else{
 									$user_name = "{$row['username']}";
@@ -422,7 +422,7 @@ if (count($rows_a) <> 0) {
 										<div style='<?php echo $arrange_picture ?>' class="IEpfq">
 											<!-- <div style="padding-bottom: 160.342%;" class="IEpfq"> -->
 											<img  style="background-color:#fff;"
-											srcset="/img/soft_svg/<?php echo $pic_a ?>"
+											srcset="<?php echo $row['soft_icon_url'] ?>"
 											itemprop="thumbnailUrl" class="_2zEKz">
 										</div>
 										</a>
@@ -485,18 +485,18 @@ if (count($rows_a) <> 0) {
 									<!-- search result tips -->
 										<div class="_3A74U">
 											<figcaption itemprop="caption">
-											<p class="_3IsQW _27Bp2"><?php echo $row['description'] ?></p></figcaption>
+											<p class="_3IsQW _27Bp2"><?php echo $row['soft_desc'] ?></p></figcaption>
 										</div>
 										<div class="_3A74U">
 											<div class="_2_OE1">
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="软件种类"><?php echo $row['kind'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件版本"><?php echo $row['soft_version'] ?></a>
 												</div>
 												<div class="_3Z-ua">
 													<a class="_6PxCM _2SmIi" title="下载次数"><?php echo shortenNumber($row['amountofdownload']) ?></a>
 												</div>
 												<div class="_3Z-ua">
-													<a class="_6PxCM _2SmIi" title="操作系统"><?php echo $row['system'] ?></a>
+													<a class="_6PxCM _2SmIi" title="软件大小"><?php echo $row['soft_size'] ?></a>
 												</div>
 											</div>
 										</div>

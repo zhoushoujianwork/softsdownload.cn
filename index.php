@@ -3,14 +3,15 @@
 session_start();
 
 include('php/mysql_connect.php');
-$sql_search = "SELECT d.*, u.username, u.user_company_position, u.company FROM userinfo u, download d WHERE u.username=d.uploader;";
+$sql_search = "SELECT d.*, u.username, u.user_company_position, u.company FROM userinfo u, soft_info d WHERE u.username=d.soft_uploader;";
 $mysqli_result = $db->query($sql_search);
 $rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
 	$rows_a[] = $row;
 }
+// var_dump($rows_a);die();
 // set the show number
-$a = array_chunk($rows_a,5);
+$a = array_chunk($rows_a,20);
 $soft_url = "https://www.baidu.com";
 // set  the size for arrange_picture
 $size = array('139.324','66.66','139.324','66.66','139.324','66.66');
@@ -298,7 +299,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 				        		<?php
 				        		$rows = $a[0];
 								foreach ($rows as $row) {
-									if ($row['uploader'] == "") {
+									if ($row['soft_uploader'] == "") {
 										$user_name = "未知用户";
 									}else{
 										$user_name = "{$row['username']}";
@@ -381,7 +382,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 													</div>
 													<!-- 下载按钮 -->
 													<div class="_3RDWG _3nWK4">
-														<a title="下载软件" href="<?php echo $soft_url ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
+														<a title="下载软件" href="<?php echo $row['soft_download-url'] ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
 														<svg class="Apljk _11dQc" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 														<path d="M25.8 15.5l-7.8 7.2v-20.7h-4v20.7l-7.8-7.2-2.7 3 12.5 11.4 12.5-11.4z"></path>
 														</svg>
@@ -402,7 +403,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 				        		<?php
 				        		$rows = $a[1];
 								foreach ($rows as $row) {
-									if ($row['uploader'] == "") {
+									if ($row['soft_uploader'] == "") {
 										$user_name = "未知用户";
 									}else{
 										$user_name = "{$row['username']}";
@@ -485,7 +486,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 													</div>
 													<!-- 下载按钮 -->
 													<div class="_3RDWG _3nWK4">
-														<a title="下载软件" href="<?php echo $soft_url ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
+														<a title="下载软件" href="<?php echo $row['soft_download-url'] ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
 														<svg class="Apljk _11dQc" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 														<path d="M25.8 15.5l-7.8 7.2v-20.7h-4v20.7l-7.8-7.2-2.7 3 12.5 11.4 12.5-11.4z"></path>
 														</svg>
@@ -506,7 +507,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 				        		<?php
 				        		$rows = $a[2];
 								foreach ($rows as $row) {
-									if ($row['uploader'] == "") {
+									if ($row['soft_uploader'] == "") {
 										$user_name = "未知用户";
 									}else{
 										$user_name = "{$row['username']}";
@@ -592,7 +593,7 @@ $pic = array('Adobe_Ae.svg','ADOBE_CH.svg','ADOBE_CO.svg','Adobe_Dw.svg','Adobe_
 													</div>
 													<!-- 下载按钮 -->
 													<div class="_3RDWG _3nWK4">
-														<a title="下载软件" href="<?php echo $soft_url ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
+														<a title="下载软件" href="<?php echo $row['soft_download-url'] ?>" rel="nofollow" download="" target="_blank" class="_1QwHQ _1l4Hh _1CBrG _1zIyn xLon9 _1Tfeo _2L6Ut _2Xklx">
 														<svg class="Apljk _11dQc" version="1.1" viewBox="0 0 32 32" width="32" height="32" aria-hidden="false">
 														<path d="M25.8 15.5l-7.8 7.2v-20.7h-4v20.7l-7.8-7.2-2.7 3 12.5 11.4 12.5-11.4z"></path>
 														</svg>

@@ -1,7 +1,7 @@
 <?php 
 $id=$_GET['id'];
 include('../php/mysql_connect.php');
-$sql_search = "SELECT * FROM softsdown.download where id=$id;";
+$sql_search = "SELECT * FROM softsdown.soft_info where id=$id;";
 $mysqli_result = $db->query($sql_search);
 $rows_a = [];
 while ( $row = $mysqli_result->fetch_array( MYSQLI_ASSOC )) {
@@ -92,14 +92,14 @@ $rows=$rows_a['0'];
 		<!-- theme contax  -->
 		<div class="_14IbC _2sCnE PrOBO _1CR66">
 			<div class="_2WEjr _1iWCF _1pgnK _5KnKv">
-			  <h1 class="gype5 _1iWCF _27Bp2">软件名称：<?php echo $rows['softname'] ?></h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件适用平台：<?php echo $rows['system'] ?></h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件上传日期：<?php echo date("Y-m-d h:i:sa",$rows['intime']) ?></h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件下载次数：<?php echo number_format($rows['amountofdownload']) ?></h1>
-			  <h1 class="gype5 _1iWCF _27Bp2">软件失效投票数：<?php echo $rows['lose'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件名称：<?php echo $rows['soft_name'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件适用平台：<?php echo $rows['soft_operating_system_bit'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件上传日期：<?php echo $rows['soft_update_time'] ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件下载次数：<?php echo number_format($rows['soft_comment']) ?></h1>
+			  <h1 class="gype5 _1iWCF _27Bp2">软件下载：<a href="<?php echo $rows['soft_download-url'] ?>">点击下载</a></h1>
 			  <h1 class="gype5 _1iWCF _27Bp2">软件描述：</h1>
-			  <div style="border:0px black dashed;width: 100%;background-color: #ccc">
-			  	 <span style="color: #aaa;font-size: 15px;"><?php echo $rows['description'] ?></span>
+			  <div style="border:0px black dashed;width: 100%;">
+			  	 <span style="color: #aaa;font-size: 15px;"><?php echo $rows['soft_desc'] ?></span>
 			  </div>
 				<div id="message">
 					<h1 class="gype5 _1iWCF _27Bp2">评论区</h1>
